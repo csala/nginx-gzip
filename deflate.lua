@@ -5,7 +5,7 @@ if content_encoding ~= "gzip" then
     ngx.req.read_body()
     local data = ngx.req.get_body_data()
 
-    if data ~= '' then
+    if data ~= nil then
         local deflated = require("zlib").deflate()(data, "finish")
 
         ngx.req.set_header("Content-Encoding", "gzip")
